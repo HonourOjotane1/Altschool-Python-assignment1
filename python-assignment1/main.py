@@ -21,7 +21,7 @@ class User(BaseModel):
 
 user_data: List[User] = []
 
-def log_middleware(request:Request, call_next):
+async def log_middleware(request:Request, call_next):
     start_time = time.time()
 
     response = call_next(request)
@@ -34,10 +34,9 @@ def log_middleware(request:Request, call_next):
 app.middleware("http")(log_middleware)
 
 
-@app.post("Users", status_code=201)
+@app.post("/Users", status_code=201)
 def create_user(user: User):
-    user_data(user)
+    user_data.append(user)
     return{
-        "message:" "user created successfulu!"
-        "users": User
+        "message": "user created successfully!"
     }
