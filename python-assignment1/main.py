@@ -39,4 +39,5 @@ def create_user(user: User):
     user_data(user)
     return{
         "message:" "user created successfulu!"
+        "users": User
     }
